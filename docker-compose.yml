@@ -4,15 +4,6 @@ services:
 
 # Infrastructure
 
-  ca:
-    build: ./components/ca/
-    container_name: pocketsoc-ca
-    hostname: pocketsoc-ca
-    volumes:
-      - ./components/ca/config:/ca
-    ports:
-      - "8888:8888"
-
 # SOC
 
   opensearch-node1:
