@@ -119,11 +119,11 @@ services:
       - AUDIT_WRITE
       - SETFCAP
     environment:
-      MYSQL_HOST: 172.20.0.23
+      MYSQL_HOST: misp-mysql
       MYSQL_LOGIN: misp
       MYSQL_PASSWORD: password # Please change for production
       MYSQL_DATABASE: misp
-      REDIS_HOST: 172.20.0.22
+      REDIS_HOST: misp-redis
       MISP_BASEURL: http://localhost:8080
       MISP_UUID: 86186CBF-6940-4354-857D-2C1C93F8FFC0 # PocketSOC use only
       MISP_ORG: PocketSOC # Please change for production
