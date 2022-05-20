@@ -2,7 +2,8 @@ FROM cfssl/cfssl:latest
 
 ADD ./config/ca-csr-orbit.json /ca/ca-csr-orbit.json
 
-RUN cfssl genkey -initca /ca/ca-csr-orbit.json 
+RUN ls /ca/ca-csr-orbit.json
+#RUN cfssl genkey -initca /ca/ca-csr-orbit.json 
 #RUN cfssl genkey -initca /ca/ca-csr-orbit.json | cfssljson -bare ca
 
 ENTRYPOINT ["cfssl"]
