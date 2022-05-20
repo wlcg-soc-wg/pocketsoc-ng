@@ -1,18 +1,18 @@
 version: '3'
 
 services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./portainer-data:/data
-    ports:
-      - 9000:9000
+#  portainer:
+#    image: portainer/portainer-ce:latest
+#    container_name: portainer
+#    restart: unless-stopped
+#    security_opt:
+#      - no-new-privileges:true
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - /var/run/docker.sock:/var/run/docker.sock:ro
+#      - ./portainer-data:/data
+#    ports:
+#      - 9000:9000
 
   opensearch-node1:
     image: opensearchproject/opensearch:latest
@@ -127,19 +127,19 @@ services:
 #      internal:
 #        ipv4_address: 172.18.0.15
 
-  zeek:
-    build: ./components/zeek/
-    container_name: zeek
-    hostname: zeek
-    volumes:
-      - ./components/zeek/config/opt/zeek/share/zeek/site/local.zeek:/opt/zeek/share/zeek/site/local.zeek:ro
-      - ./components/zeek/config/etc/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml:ro
-      - ./components/zeek/pcaps:/pcaps
-    cap_add:
-      - NET_ADMIN
-    networks:
-      mirror:
-        ipv4_address: 172.20.0.15
+#  zeek:
+#    build: ./components/zeek/
+#    container_name: zeek
+#    hostname: zeek
+#    volumes:
+#      - ./components/zeek/config/opt/zeek/share/zeek/site/local.zeek:/opt/zeek/share/zeek/site/local.zeek:ro
+#      - ./components/zeek/config/etc/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml:ro
+#      - ./components/zeek/pcaps:/pcaps
+#    cap_add:
+#      - NET_ADMIN
+#    networks:
+#      mirror:
+#        ipv4_address: 172.20.0.15
 
 #  router:
 #    build: ./components/router/
