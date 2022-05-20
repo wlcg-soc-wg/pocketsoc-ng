@@ -198,7 +198,7 @@ services:
         ipv4_address: 172.20.0.21
 
   misp:
-    image: ${MISP_IMAGE-ghcr.io/nukib/misp:latest}
+    image: ghcr.io/nukib/misp:latest
     restart: always
     container_name: misp
     depends_on:
