@@ -28,8 +28,8 @@ services:
     ports:
       - 9200:9200
       - 9600:9600 # required for Performance Analyzer
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
   opensearch-node2:
     image: opensearchproject/opensearch:latest
@@ -50,8 +50,8 @@ services:
         hard: 65536
     volumes:
       - opensearch-data2:/usr/share/opensearch/data
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest
@@ -62,8 +62,8 @@ services:
       - "5601"
     environment:
       OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
   mysql:
     image: mariadb:10.7
@@ -76,16 +76,16 @@ services:
       MYSQL_USER: misp
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
-    networks:
-      mirror:
+#    networks:
+#      mirror:
 #        ipv4_address: 172.20.0.23
 
   redis:
     image: redis:6.2
     restart: always
     container_name: misp-redis
-    networks:
-      mirror:
+ #   networks:
+ #     mirror:
  #       ipv4_address: 172.20.0.22
 
   misp-modules:
@@ -99,8 +99,8 @@ services:
       - NET_BIND_SERVICE
       - AUDIT_WRITE
       - SETFCAP
-    networks:
-      mirror:
+#    networks:
+#      mirror:
 #        ipv4_address: 172.20.0.21
 
   misp:
@@ -132,45 +132,115 @@ services:
       SECURITY_SALT: C2CE0A2A52448E31 # PocketSOC use only
       ZEROMQ_ENABLED: "yes"
     ports:
-      - 8080:80
+      - 127.0.0.1:8080:80
       - 127.0.0.1:50000:50000
-    networks:
-      mirror:
+ #   networks:
+ #     mirror:
  #       ipv4_address: 172.20.0.20
-
-  zeek:
-    build: ./components/zeek/
-    container_name: zeek
-    hostname: zeek
-    volumes:
-#      - ./components/zeek/config/opt/zeek/share/zeek/site/local.zeek:/opt/zeek/share/zeek/site/local.zeek:ro
-#      - ./components/zeek/config/etc/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml:ro
-      - ./components/zeek/pcaps:/pcaps
-    cap_add:
-      - NET_ADMIN
-    networks:
-      mirror:
-#        ipv4_address: 172.20.0.15
-
 
 # Client-side
 
 # "External"
 
+
+#  logstash-zeek:
+#    image: opensearchproject/logstash-oss-with-opensearch-output-plugin:7.16.2
+#    container_name: logstash-zeek
+#    hostname: logstash-zeek
+#    volumes:
+#      - ./components/logstash-zeek/config:/usr/share/logstash/config:ro
+#      - ./components/logstash-zeek/pipeline:/usr/share/logstash/pipeline:ro
+#      - ./components/logstash-zeek/mappings:/usr/share/logstash/mappings:ro
+#    environment:
+#      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      mirror:
+#        ipv4_address: 172.20.0.51
+#    depends_on:
+#      - elasticsearch
+
+#  memcached:
+#    build: ./components/memcached/
+#    container_name: memcached
+#    hostname: memcached
+#    networks:
+#      mirror:
+#        ipv4_address: 172.20.0.55
+#
+#  download:
+#    build: ./components/download/
+#    container_name: download
+#    hostname: download
+#    networks:
+#      external:
+#        ipv4_address: 172.19.0.67
+
+#  target:
+#    build: ./components/target/
+#    container_name: target
+#    hostname: target
+#    networks:
+#      external:
+#        ipv4_address: 172.19.0.77
+#
+#  client:
+#    build: ./components/client/
+#    container_name: client
+#    hostname: client
+#    volumes:
+#      - ./components/client/files/:/files
+#    dns:
+#      - "172.18.0.100"
+#    cap_add:
+#      - NET_ADMIN
+#    networks:
+#      internal:
+#        ipv4_address: 172.18.0.15
+
+#  zeek:
+#    build: ./components/zeek/
+#    container_name: zeek
+#    hostname: zeek
+#    volumes:
+#      - ./components/zeek/config/opt/zeek/share/zeek/site/local.zeek:/opt/zeek/share/zeek/site/local.zeek:ro
+#      - ./components/zeek/config/etc/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml:ro
+#      - ./components/zeek/pcaps:/pcaps
+#    cap_add:
+#      - NET_ADMIN
+#    networks:
+#      mirror:
+#        ipv4_address: 172.20.0.15
+
+#  router:
+#    build: ./components/router/
+#    container_name: router
+#    hostname: router
+#    volumes:
+#      - ./components/router/files/:/files
+#    cap_add:
+#      - NET_ADMIN
+#    networks:
+#      mirror:
+#        ipv4_address: 172.20.0.100
+#      internal:
+#        ipv4_address: 172.18.0.100
+#      external:
+#        ipv4_address: 172.19.0.100
+#    depends_on:
+#      - kibana
+
+
 volumes:
   opensearch-data1:
   opensearch-data2:
 
-networks:
-  internal:
-    ipam:
-      config:
-        - subnet: 172.18.0.0/16
-  external:
-    ipam:
-      config:
-        - subnet: 172.19.0.0/16
-  mirror:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
+#networks:
+#  mirror:
+#    external:
+#      name: mirror
+#  internal:
+#    external:
+#      name: internal
+#  external:
+#    external:
+#      name: external
