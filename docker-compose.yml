@@ -155,6 +155,17 @@ services:
 
 # Client-side
 
+  client:
+    build: ./components/client/
+    container_name: client
+    hostname: client
+    volumes:
+      - client_data:/data
+    networks:
+      internal:
+#        ipv4_address: 172.18.0.15
+
+
 # "External"
 
 volumes:
