@@ -7,4 +7,6 @@ RUN    yum update -y
 
 ADD ./files /files
 
-CMD ["/files/startup"]
+RUN chmod +x /files/startup.sh
+
+CMD ["/files/startup.sh"]
