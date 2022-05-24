@@ -158,7 +158,8 @@ services:
   client:
     build: ./components/client/
     container_name: client
-    hostname: client
+    stdin_open: true 
+    tty: true 
     volumes:
       - client_data:/data
     networks:
