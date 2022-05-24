@@ -171,6 +171,7 @@ services:
 volumes:
   opensearch-data1:
   opensearch-data2:
+  client_data:
 
 networks:
   internal:
