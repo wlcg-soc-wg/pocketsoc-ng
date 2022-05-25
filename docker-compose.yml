@@ -9,8 +9,8 @@ router:
     container_name: router
     volumes:
       - router_data:/files
-    cap_add:
-      - NET_ADMIN
+#    cap_add:
+#      - NET_ADMIN
     networks:
       - mirror
 #      - internal
