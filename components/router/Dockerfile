@@ -4,4 +4,6 @@ RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nm
 
 ADD ./files /files
 
+RUN chmod +x /files/startup.sh
+
 CMD ["/files/startup.sh"]
