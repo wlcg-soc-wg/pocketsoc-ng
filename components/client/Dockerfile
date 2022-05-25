@@ -1,4 +1,4 @@
-FROM centos:7
+FROM quay.io/centos/centos:stream8
 
 # RUN yum install -y net-tools tcpdump iptables lsof iproute bind-utils vim  git libpcap-devel pkgconfig libtool autoconf automake bash make psmisc && \
 RUN    yum update -y
