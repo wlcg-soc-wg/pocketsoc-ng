@@ -5,8 +5,8 @@ RUN    yum update -y
 
 # RUN git clone https://github.com/pmacct/pmacct && cd pmacct && ./autogen.sh && ./configure && make && make install
 
-ADD ./files /files
+ADD ./bin /opt/pocketsoc-ng/bin
 
-RUN chmod +x /files/startup.sh
+RUN chmod +x /opt/pocketsoc-ng/bin/startup.sh
 
-CMD ["/files/startup.sh"]
+CMD ["/opt/pocketsoc-ng/bin/startup.sh"]
