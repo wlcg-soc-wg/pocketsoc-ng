@@ -183,7 +183,7 @@ services:
 
   webserver:
     build: ./components/webserver/
-    container_name: download
+    container_name: webserver
     volumes:
       - webserver_data:/usr/local/apache2/htdocs/
     networks:
