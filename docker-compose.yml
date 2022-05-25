@@ -181,6 +181,14 @@ services:
 
 # "External"
 
+  download:
+    build: ./components/download/
+    container_name: download
+    volumes:
+      - webserver_data:/usr/local/apache2/htdocs/
+    networks:
+      external:
+
 volumes:
   opensearch-data1:
   opensearch-data2:
@@ -188,6 +196,7 @@ volumes:
   client_data:
   router_bin:
   router_data:
+  webserver_data:
 
 networks:
   internal:
