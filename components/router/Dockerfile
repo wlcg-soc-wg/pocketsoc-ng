@@ -1,9 +1,9 @@
 FROM quay.io/centos/centos:stream8
 
-#RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nmap
+RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nmap
 
-ADD ./files /files
+ADD ./bin /opt/pocketsoc-ng/router/bin
 
-RUN chmod +x /files/startup.sh
+RUN chmod +x /opt/pocketsoc-ng/router/bin/startup.sh
 
-CMD ["/files/startup.sh"]
+CMD ["/opt/pocketsoc-ng/router/bin/startup.sh"]
