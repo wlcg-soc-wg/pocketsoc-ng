@@ -182,7 +182,7 @@ services:
 # "External"
 
   webserver:
-    build: ./components/download/
+    build: ./components/webserver/
     container_name: download
     volumes:
       - webserver_data:/usr/local/apache2/htdocs/
