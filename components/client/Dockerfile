@@ -7,6 +7,6 @@ RUN    yum update -y
 
 ADD ./bin /opt/pocketsoc-ng/bin
 
-RUN chmod +x /opt/pocketsoc-ng/bin/startup.sh
+RUN chmod +x /opt/pocketsoc-ng/client/bin/startup.sh
 
 CMD ["/opt/pocketsoc-ng/bin/startup.sh"]
