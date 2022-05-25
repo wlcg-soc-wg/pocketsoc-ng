@@ -181,7 +181,7 @@ services:
 
 # "External"
 
-  download:
+  webserver:
     build: ./components/download/
     container_name: download
     volumes:
