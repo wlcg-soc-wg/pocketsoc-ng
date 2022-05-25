@@ -172,6 +172,7 @@ services:
     build: ./components/client/
     container_name: client
     volumes:
+      - client_bin:/opt/pocketsoc-ng/client/bin
       - client_data:/opt/pocketsoc-ng/client/data
     networks:
       internal:
@@ -183,6 +184,7 @@ services:
 volumes:
   opensearch-data1:
   opensearch-data2:
+  client_bin:
   client_data:
   router_bin:
   router_data:
