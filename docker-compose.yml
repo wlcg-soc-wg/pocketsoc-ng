@@ -12,9 +12,9 @@ router:
     cap_add:
       - NET_ADMIN
     networks:
-      mirror:
-      internal:
-      external:
+      - mirror
+      - internal
+      - external
 
 # SOC
 
